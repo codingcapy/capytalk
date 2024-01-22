@@ -4,7 +4,7 @@ import io from "socket.io-client";
 
 const socket = io("http://localhost:3005");
 
-function App() {
+export default function ChatRoomPage() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -74,5 +74,3 @@ function App() {
     </>
   );
 }
-
-export default App;

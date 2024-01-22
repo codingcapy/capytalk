@@ -1,0 +1,51 @@
+
+##add friend
+
+const inputUser = formData userUsername
+const user = await Users.findOne({username: userUsername})
+const inputFriend = formData friendUsername
+const friend = await Users.findOne({username:friendUsername})
+if !friend return error message
+if friend.username in user.friends return error message
+await User.updateOne({username:inputUser},{$push:{friends:friend.username}})
+
+##create chat
+
+const chatTitle = formData title
+const inputUser = formData userUsername
+const user = await Users.findOne({username: userUsername})
+const inputFriend = formData friendUsername
+const friend = Users.findOne({username:friendUsername})
+const chat = await Chat.create({title:chatTitle, ${push:{users:user}}})
+await Chat.updateOne({chatId:chat.chatId, ${push:{users:friend}}})
+await User.updateOne({username:inputUser},{$push:{chats:chat.chatId}}) 
+await User.updateOne({username:inputFriend},{$push:{chats:chat.chatId}})
+
+
+##create message
+
+const inputMessage = formData message
+const inputUser = formData userUsername
+const inputChat = formData chatId
+const message = Message.create({inputMessage, inputUser})
+const chat = Chat.findOne({chatId:chatId})
+Chat.updateOne({chatId:chat.chatId}, {$push:{messages:message}})
+
+##get friends
+const friends = User.findAll({}) // need to figure out how to get all users inside currentUser's friends list
+friends.map((friend)=><div>friend.username</div>)
+
+##get friend
+const inputFriend = formData friendUsername
+const friend = Users.findOne({username:friendUsername})
+display friend details in friend profile page
+
+##get chats
+const chats = Chat.findAll({}) // need to figure out how to get all chats inside currentUser's chats list
+chats.map((chat)=><div>{chat.title}</div><div>{chat.users.map((friend)=><div>{user}</div>)}</div>)
+
+##get chat
+const inputChat = chatId
+const chat = Chat.findOne({chatId:chatId})
+const messages = chat.messages.find(last 30 or so)
+message.map((message)=><div>{message.username} on {message.createDate}</div><div>{message.content}</div>)
