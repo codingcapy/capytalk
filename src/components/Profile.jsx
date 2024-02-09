@@ -36,7 +36,7 @@ export default function Profile(){
     }
 
     return (
-        <div>
+        <div className="px-5 border-2 border-slate-600 min-w-full h-screen overflow-y-auto">
             <h1 className="text-3xl font-bold text-center py-5 ">Your Profile</h1>
             <p>Username: {user.username}</p>
             {editMode
