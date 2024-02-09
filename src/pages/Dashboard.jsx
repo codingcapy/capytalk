@@ -17,6 +17,7 @@ import Chats from "../components/Chats";
 import Messages from "../components/Messages";
 import AddFriend from "../components/AddFriend";
 import FriendProfile from "../components/FriendProfile";
+import Profile from "../components/Profile";
 
 const socket = io("https://capytalk-server-production.up.railway.app");
 
@@ -29,6 +30,7 @@ export default function Dashboard() {
     const [showAddFriend, setShowAddFriend] = useState(false);
     const [showFriend, setShowFriend] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
+    const [showProfile, setShowProfile] = useState(false);
     const [isMenuSticky, setIsMenuSticky] = useState(false);
     const [friend, setFriend] = useState("");
     const [friends, setFriends] = useState(user.friends);
@@ -43,6 +45,7 @@ export default function Dashboard() {
         setShowMessages(false);
         setShowAddFriend(false);
         setShowFriend(false);
+        setShowProfile(false);
     }
 
     function tappedChat() {
@@ -51,6 +54,7 @@ export default function Dashboard() {
         setFriendsMode(false);
         setShowAddFriend(false);
         setShowFriend(false);
+        setShowProfile(false);
     }
 
     function tappedFriends() {
@@ -59,6 +63,7 @@ export default function Dashboard() {
         setFriendsMode(true);
         setShowAddFriend(false);
         setShowFriend(false);
+        setShowProfile(false);
     }
 
     function tappedAddFriend() {
@@ -67,6 +72,7 @@ export default function Dashboard() {
         setFriendsMode(false);
         setShowAddFriend(true);
         setShowFriend(false);
+        setShowProfile(false);
     }
 
     function tappedFriend() {
@@ -75,6 +81,16 @@ export default function Dashboard() {
         setFriendsMode(false);
         setShowAddFriend(false);
         setShowFriend(true);
+        setShowProfile(false);
+    }
+
+    function tappedProfile() {
+        setChatsMode(false);
+        setShowMessages(false);
+        setFriendsMode(false);
+        setShowAddFriend(false);
+        setShowFriend(false);
+        setShowProfile(true);
     }
 
     function clickedAddFriend() {
@@ -82,6 +98,7 @@ export default function Dashboard() {
         setShowAddFriend(true);
         setShowFriend(false);
         setShowDefault(false);
+        setShowProfile(false);
         tappedAddFriend();
     }
 
@@ -92,6 +109,7 @@ export default function Dashboard() {
         setShowAddFriend(false);
         setShowFriend(false);
         setShowDefault(false);
+        setShowProfile(false);
         tappedChat();
     }
 
@@ -101,7 +119,18 @@ export default function Dashboard() {
         setShowAddFriend(false);
         setShowFriend(true);
         setShowDefault(false);
+        setShowProfile(false);
         tappedFriend();
+    }
+
+    function clickedProfile(username) {
+        setFriend(username);
+        setShowMessages(false);
+        setShowAddFriend(false);
+        setShowFriend(false);
+        setShowDefault(false);
+        setShowProfile(true);
+        tappedProfile();
     }
 
     const [message, setMessage] = useState("");
@@ -201,7 +230,7 @@ export default function Dashboard() {
                         {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} friends={friends} />}
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                         <div className="flex flex-col">
-                            <NavLink to={`/capytalk/dashboard/${user.userId}`} className="px-5 py-5 bg-slate-800 font-bold">{user.username}</NavLink>
+                            <div onClick={clickedProfile} className="px-5 py-5 bg-slate-800 font-bold">{user.username}</div>
                             <NavLink to="/capytalk/" onClick={logoutService} className="px-5 bg-slate-800">Logout</NavLink>
                         </div>
                     </div>
@@ -212,6 +241,7 @@ export default function Dashboard() {
                     {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} />}
                     {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} />}
                     {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
+                    {showProfile && <Profile />}
                 </div>
             </main>
             <div
@@ -224,7 +254,7 @@ export default function Dashboard() {
                 <div className="px-5" onClick={tappedChats}>
                     Chats
                 </div>
-                <NavLink to={`/capytalk/dashboard/${user.userId}`} className="px-5">{user.username}</NavLink>
+                <div onClick={tappedProfile} className="px-5">{user.username}</div>
                 <NavLink to="/capytalk/" onClick={logoutService} className="px-5">Logout</NavLink>
             </div>
         </div>

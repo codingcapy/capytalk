@@ -27,7 +27,7 @@ export default function Profile(){
         const password = e.target.password.value;
         const userId = user.userId
         const updatedUser = { password };
-        const res = await axios.post(`${DOMAIN}/api/v1/users/${userId}`, updatedUser);
+        const res = await axios.post(`${DOMAIN}/api/users/${userId}`, updatedUser);
         toggleEditMode();
         setMessage("Password updated successfully!")
         if (res?.data.success) {
