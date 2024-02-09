@@ -123,8 +123,7 @@ export default function Dashboard() {
         tappedFriend();
     }
 
-    function clickedProfile(username) {
-        setFriend(username);
+    function clickedProfile() {
         setShowMessages(false);
         setShowAddFriend(false);
         setShowFriend(false);
