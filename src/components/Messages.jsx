@@ -31,7 +31,7 @@ export default function Messages(props) {
     };
 
     return (
-        <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full h-screen overflow-y-auto">
+        <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full max-w-screen-md h-screen overflow-y-auto">
             <div className="text-xl sticky top-0 bg-slate-800 py-5">{props.currentChat.title}</div>
             <div className="sticky top-16 bg-slate-800 py-5">+ Invite friend</div>
             <div>
