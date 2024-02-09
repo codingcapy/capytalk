@@ -31,7 +31,7 @@ export default function Profile(){
         toggleEditMode();
         setMessage("Password updated successfully!")
         if (res?.data.success) {
-            navigate(`/capytalk/users/${userId}`);
+            navigate(`/capytalk/dashboard/${userId}`);
         }
     }
 
