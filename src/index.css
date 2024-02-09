@@ -1,8 +1,10 @@
+/*
+author: Paul Kim
+date: February 8, 2024
+version: 1.0
+description: index css for CapyTalk client
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
-  background-color: #202020;
-  color: #fff;
-}

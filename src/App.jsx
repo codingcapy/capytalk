@@ -1,13 +1,25 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import io from "socket.io-client";
-import ChatRoomPage from "./pages/ChatRoomPage";
 
-const socket = io("http://localhost:3005");
+/*
+author: Paul Kim
+date: February 8, 2024
+version: 1.0
+description: app for CapyTalk client
+ */
+
+import { RouterProvider } from 'react-router-dom';
+import { Router } from './router';
+import io from "socket.io-client";
+
+const socket = io("http://localhost:3333");
 
 function App() {
-  return(
-    <ChatRoomPage />
+
+  const router = Router();
+
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
   )
 }
 
