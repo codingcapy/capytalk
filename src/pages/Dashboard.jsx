@@ -228,6 +228,7 @@ export default function Dashboard() {
                         {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} />}
                         {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} friends={friends} />}
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
+                        {showProfile && <Profile />}
                         <div className="flex flex-col">
                             <div onClick={clickedProfile} className="px-5 py-5 bg-slate-800 font-bold cursor-pointer">{user.username}</div>
                             <NavLink to="/capytalk/" onClick={logoutService} className="px-5 bg-slate-800">Logout</NavLink>
@@ -253,7 +254,7 @@ export default function Dashboard() {
                 <div className="px-5" onClick={tappedChats}>
                     Chats
                 </div>
-                <div onClick={tappedProfile} className="px-5">{user.username}</div>
+                <div onClick={tappedProfile} className="px-5">You</div>
                 <NavLink to="/capytalk/" onClick={logoutService} className="px-5">Logout</NavLink>
             </div>
         </div>
