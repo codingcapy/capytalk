@@ -6,6 +6,6 @@ version: 1.0
 description: endpoint for CapyTalk client
  */
 
-const DOMAIN = "http://localhost:3333";
+const DOMAIN = "https://capytalk-server-production.up.railway.app";
 
 export default DOMAIN;
