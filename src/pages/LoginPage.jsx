@@ -20,7 +20,7 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (!!user) {
-            navigate(`/dashboard/${user.userId}`);
+            navigate(`/capytalk/dashboard/${user.userId}`);
         }
     }, [user])
 
@@ -50,7 +50,7 @@ export default function LoginPage() {
                         <input type="password" name="password" id="password" placeholder="Password" required className="px-2 border rounded-lg border-slate-700 py-1" />
                     </div>
                     <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white">Login</button>
-                    <NavLink to="/users/signup" className="text-center">Sign Up</NavLink>
+                    <NavLink to="/capytalk/users/signup" className="text-center">Sign Up</NavLink>
                 </form>
                 {authLoading ? <h2>Loading...</h2> : null}
                 <p>{message}</p>

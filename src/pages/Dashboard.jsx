@@ -201,8 +201,8 @@ export default function Dashboard() {
                         {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} friends={friends} />}
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                         <div className="flex flex-col">
-                            <NavLink to={`/dashboard/${user.userId}`} className="px-5 py-5 bg-slate-800 font-bold">{user.username}</NavLink>
-                            <NavLink to="/" onClick={logoutService} className="px-5 bg-slate-800">Logout</NavLink>
+                            <NavLink to={`/capytalk/dashboard/${user.userId}`} className="px-5 py-5 bg-slate-800 font-bold">{user.username}</NavLink>
+                            <NavLink to="/capytalk/" onClick={logoutService} className="px-5 bg-slate-800">Logout</NavLink>
                         </div>
                     </div>
                 </div>
@@ -224,8 +224,8 @@ export default function Dashboard() {
                 <div className="px-5" onClick={tappedChats}>
                     Chats
                 </div>
-                <NavLink to={`/dashboard/${user.userId}`} className="px-5">{user.username}</NavLink>
-                <NavLink to="/" onClick={logoutService} className="px-5">Logout</NavLink>
+                <NavLink to={`/capytalk/dashboard/${user.userId}`} className="px-5">{user.username}</NavLink>
+                <NavLink to="/capytalk/" onClick={logoutService} className="px-5">Logout</NavLink>
             </div>
         </div>
     )

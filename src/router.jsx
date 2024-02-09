@@ -20,12 +20,12 @@ export function Router() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route element={<Layout />}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/users/login" element={<LoginPage />} />
-                <Route path="/users/signup" element={<SignupPage />} />
-                <Route path="/dashboard/:userId" element={<Dashboard />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/capytalk/" element={<HomePage />} />
+                <Route path="/capytalk/users/login" element={<LoginPage />} />
+                <Route path="/capytalk/users/signup" element={<SignupPage />} />
+                <Route path="/capytalk/dashboard/:userId" element={<Dashboard />} />
+                <Route path="/capytalk/about" element={<AboutPage />} />
+                <Route path="/capytalk/contact" element={<ContactPage />} />
             </Route>
         )
     )

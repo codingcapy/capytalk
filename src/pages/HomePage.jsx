@@ -23,9 +23,9 @@ export default function HomePage() {
             <main className="flex-1 mx-auto ">
                 {!user && <div className="flex flex-col items-center">
                     <div className="border rounded-xl py-5 px-5 my-5 bg-indigo-600 text-white">
-                        <NavLink to="/users/login">Login</NavLink>
+                        <NavLink to="/capytalk/users/login">Login</NavLink>
                     </div>
-                    <NavLink to="/users/signup" className="underline text-indigo-800">Sign Up</NavLink>
+                    <NavLink to="/capytalk/users/signup" className="underline text-indigo-800">Sign Up</NavLink>
                 </div>}
             </main>
             <Footer />
