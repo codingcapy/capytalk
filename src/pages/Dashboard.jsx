@@ -18,7 +18,7 @@ import Messages from "../components/Messages";
 import AddFriend from "../components/AddFriend";
 import FriendProfile from "../components/FriendProfile";
 
-const socket = io("http://localhost:3333");
+const socket = io("https://capytalk-server-production.up.railway.app");
 
 export default function Dashboard() {
 
