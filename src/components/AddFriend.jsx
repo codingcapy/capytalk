@@ -38,7 +38,7 @@ export default function AddFriend(props) {
     }
 
     return (
-        <div className="px-5 flex-2 border-2 border-slate-600 min-w-full h-screen overflow-y-auto ">
+        <div className="px-5 flex-2 border-2 border-slate-600 md:w-[900px] h-screen overflow-y-auto ">
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <h2 className="py-10 text-2xl text-slate-700 font-medium text-center">Add Friend</h2>
                 <div className="flex flex-col">
