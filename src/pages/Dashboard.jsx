@@ -36,6 +36,7 @@ export default function Dashboard() {
     const [friends, setFriends] = useState(user.friends);
     const [chats, setChats] = useState(user.chats);
     const [currentChat, setCurrentChat] = useState(null);
+    const [currentMessages, setCurrentMessages] = useState(null);
     const [inputChat, setInputChat] = useState("");
     const [inputMessage, setInputMessage] = useState("");
 
@@ -104,7 +105,9 @@ export default function Dashboard() {
 
     async function clickedChat(chat) {
         const newChat = await axios.get(`${DOMAIN}/api/chats/${chat.chatId}`);
+        const newMessages = await axios.get(`${DOMAIN}/api/messages/${chat.chatId}`);
         setCurrentChat(newChat.data);
+        setCurrentMessages(newMessages.data);
         setShowMessages(true);
         setShowAddFriend(false);
         setShowFriend(false);
@@ -161,9 +164,9 @@ export default function Dashboard() {
         const message = { content, user: currentUser, chatId: currentChat.chatId };
         const res = await axios.post(`${DOMAIN}/api/messages`, message);
         if (res?.data.success) {
-            const newChat = await axios.get(`${DOMAIN}/api/chats/${currentChat.chatId}`);
+            const newMessage = await axios.get(`${DOMAIN}/api/messages/${currentChat.chatId}`);
             setMessage(res?.data.message);
-            setCurrentChat(newChat.data);
+            setCurrentMessages(newMessage.data);
             setInputMessage("");
             socket.emit("message", message);
         }
@@ -176,11 +179,11 @@ export default function Dashboard() {
     useEffect(() => {
         socket.on("message", receiveMessage);
         return () => socket.off("message", receiveMessage);
-    }, [currentChat]);
+    }, [currentMessages]);
 
     async function receiveMessage() {
-        const newChat = await axios.get(`${DOMAIN}/api/chats/${currentChat.chatId}`);
-        setCurrentChat(newChat.data);
+        const newMessage = await axios.get(`${DOMAIN}/api/messages/${currentChat.chatId}`);
+        setCurrentMessages(newMessage.data);
     }
 
     useEffect(() => {
@@ -225,7 +228,7 @@ export default function Dashboard() {
                         {showDefault && <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full h-screen overflow-y-auto">
                             <div className="text-xl sticky top-0 bg-slate-800 py-5">Messages</div>
                         </div>}
-                        {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} />}
+                        {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} />}
                         {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} friends={friends} />}
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                         {showProfile && <Profile />}
@@ -238,7 +241,7 @@ export default function Dashboard() {
                 <div className="px-3 md:hidden">
                     {chatsMode && <Chats chats={chats} clickedChat={clickedChat} />}
                     {friendsMode && <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />}
-                    {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} />}
+                    {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} />}
                     {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} />}
                     {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                     {showProfile && <Profile />}

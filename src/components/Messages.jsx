@@ -24,7 +24,7 @@ export default function Messages(props) {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [props.currentChat.messages]);
+    }, [props.currentMessages]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -35,7 +35,7 @@ export default function Messages(props) {
             <div className="text-xl sticky top-0 bg-slate-800 py-5">{props.currentChat.title}</div>
             <div className="sticky top-16 bg-slate-800 py-5">+ Invite friend</div>
             <div>
-                {props.currentChat.messages.map((message) =>
+                {props.currentMessages.map((message) =>
                     <div key={message.messageId} className="py-2">
                         <div className="flex"><div className="font-bold">{message.username}</div><div className="pl-2">on {message.date}</div></div><div>{message.content}</div>
                     </div>)}

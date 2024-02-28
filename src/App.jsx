@@ -8,9 +8,6 @@ description: app for CapyTalk client
 
 import { RouterProvider } from 'react-router-dom';
 import { Router } from './router';
-import io from "socket.io-client";
-
-const socket = io("https://capytalk-server-production.up.railway.app");
 
 function App() {
 
