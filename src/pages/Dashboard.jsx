@@ -36,7 +36,7 @@ export default function Dashboard() {
     const [friends, setFriends] = useState(user.friends);
     const [chats, setChats] = useState(user.chats);
     const [currentChat, setCurrentChat] = useState(null);
-    const [currentMessages, setCurrentMessages] = useState(null);
+    const [currentMessages, setCurrentMessages] = useState([]);
     const [inputChat, setInputChat] = useState("");
     const [inputMessage, setInputMessage] = useState("");
 
