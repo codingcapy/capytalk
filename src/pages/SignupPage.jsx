@@ -22,7 +22,8 @@ export default function SignupPage() {
         e.preventDefault();
         const username = e.target.username.value;
         const password = e.target.password.value;
-        const newUser = { username, password };
+        const email = e.target.email.value;
+        const newUser = { username, password, email };
         const res = await axios.post(`${DOMAIN}/api/users/`, newUser);
         if (res?.data.success) {
             setMessage(res?.data.message);
@@ -46,6 +47,10 @@ export default function SignupPage() {
                     <div className="flex flex-col my-2">
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="Password" required className="px-2 border rounded-lg border-slate-700 py-1" />
+                    </div>
+                    <div className="flex flex-col my-2">
+                        <label htmlFor="password">Email (for password recovery and notifications)</label>
+                        <input type="email" name="email" id="email" placeholder="example@example.com" required className="px-2 border rounded-lg border-slate-700 py-1" />
                     </div>
                     <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white">Sign Up</button>
                     <NavLink to="/capytalk/users/login" className="text-center">Login</NavLink>
