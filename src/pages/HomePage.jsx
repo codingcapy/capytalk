@@ -16,7 +16,7 @@ export default function HomePage() {
     const { user } = useAuthStore((state) => state);
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col fixed min-h-full min-w-full">
             <Header />
             <h1 className="py-5 text-2xl font-medium text-center bg-indigo-600 text-white">CapyTalk</h1>
             <p className="py-5 font-medium text-center bg-indigo-600 text-white">Chat, communicate, play with friends and have fun</p>
