@@ -35,7 +35,7 @@ export default function SignupPage() {
     }
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-full">
             <Header />
             <main className="flex-1 mx-auto">
                 <form onSubmit={handleSubmit} className="flex flex-col">
