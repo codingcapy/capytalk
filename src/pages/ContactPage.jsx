@@ -34,18 +34,18 @@ export default function ContactPage() {
     return (
         <div className="flex flex-col min-h-screen ">
             <Header />
-            <main className="flex-1 mx-auto text-center max-w-screen-xl">
+            <main className="flex-1 mx-auto text-center md:max-w-screen-xl">
                 <h1 className="text-3xl font-bold text-center py-5 ">
                     Contact Us
                 </h1>
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     <div className="flex flex-col">
                         <label htmlFor="title" >Email Address</label>
-                        <input type="email" name='email' id='email' placeholder="e.g. abc@gmail.com" required value={emailInput} onChange={(e) => setEmailInput(e.target.value)} className="px-2 border rounded-lg border-slate-700 py-1 text-black" />
+                        <input type="email" name='email' id='email' placeholder="e.g. abc@gmail.com" required value={emailInput} onChange={(e) => setEmailInput(e.target.value)} className="px-2 w-80 border rounded-lg border-slate-700 py-1 text-black" />
                     </div>
                     <div className="flex flex-col my-2">
                         <label htmlFor="content">Message</label>
-                        <textarea type="text" name='content' id='content' placeholder='Tell us your thoughts!' rows="10" cols="40" className="px-2 border rounded-lg border-slate-700 py-1 text-black" value={contentInput} onChange={(e) => setContentInput(e.target.value)} />
+                        <textarea type="text" name='content' id='content' placeholder='Tell us your thoughts!' rows="10" cols="40" className="px-2 w-80 border rounded-lg border-slate-700 py-1 text-black" value={contentInput} onChange={(e) => setContentInput(e.target.value)} />
                     </div>
                     <button type="submit" className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white">Send</button>
                 </form>
