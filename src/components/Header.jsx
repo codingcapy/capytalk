@@ -8,6 +8,7 @@ description: header component for CapyTalk client
 
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import {IoHomeSharp} from "react-icons/io5"
 
 export default function Header() {
 
@@ -21,7 +22,7 @@ export default function Header() {
         <header className="sticky z-50 top-0 md:flex justify-between py-5 bg-indigo-600 text-white">
             {expandedMenu && <div className="flex flex-col md:flex-row">
                 <NavLink to="/capytalk/" className="text-center py-2 md:py-4 px-5">CapyTalk</NavLink>
-                <NavLink to="/capytalk/" className="text-center py-2 md:py-4 px-5">Home</NavLink>
+                <NavLink to="/capytalk/" className="flex py-2 md:py-4 mx-auto"><IoHomeSharp size={20} className="text-center mx-2" /> Home</NavLink>
             </div>}
             {expandedMenu && <div className="flex flex-col md:block md:py-4">
                 <NavLink to="/capytalk/about" className="text-center py-2 md:py-4 px-5">About</NavLink>
