@@ -248,7 +248,7 @@ export default function Dashboard() {
                 </div>
             </main>
             <div
-                className={`flex justify-between py-5 md:hidden sticky z-10 bg-slate-800 ${isMenuSticky ? "top-0" : "bottom-0"
+                className={`flex justify-between py-5 md:hidden sticky z-90 bg-slate-800 ${isMenuSticky ? "top-0" : "bottom-0"
                     }`}
             >
                 <div className="px-5" onClick={() => tappedFriends()}>
