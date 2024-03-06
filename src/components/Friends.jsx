@@ -13,7 +13,7 @@ export default function Friends(props) {
             <div className="py-5 text-xl sticky top-0 bg-slate-800">Friends</div>
             <div>
                 <div className="py-5 cursor-pointer" onClick={() => props.clickedAddFriend()} >+ Add a Friend</div>
-                {props.friends.map((friend) => <div key={friend} onClick={() => props.clickedFriend(friend)} className="cursor-pointer">
+                {props.friends.map((friend) => <div key={friend} onClick={() => props.clickedFriend(friend)} className="py-2 cursor-pointer">
                     {friend}
                 </div>)}
             </div>
