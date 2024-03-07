@@ -139,9 +139,9 @@ export default function Dashboard() {
 
     async function handleCreateChat(e) {
         e.preventDefault();
-        const title = e.target.title.value;
         const currentUser = user.username;
         const currentFriend = friend;
+        const title = `${currentUser}, ${currentFriend}`;
         const chat = { title, user: currentUser, friend: currentFriend };
         const res = await axios.post(`${DOMAIN}/api/chats`, chat);
         if (res?.data.success) {
@@ -150,6 +150,8 @@ export default function Dashboard() {
             setChats(user1.data.chats);
             setInputChat("");
             socket.emit("chat", chat);
+            const newChat = user1.data.chats[user1.data.chats.length - 1]
+            clickedChat(newChat)
         }
         else {
             setMessage(res?.data.message);
