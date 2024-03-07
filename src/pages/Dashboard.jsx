@@ -236,7 +236,7 @@ export default function Dashboard() {
                         {showProfile && <Profile />}
                         <div className="flex flex-col">
                             <div onClick={clickedProfile} className="px-5 py-5 bg-slate-800 font-bold cursor-pointer">{user.username}</div>
-                            <NavLink to="/capytalk/" onClick={logoutService} className="px-5 bg-slate-800">Logout</NavLink>
+                            <NavLink to="/capytalk/" onClick={logoutService} className="px-5 bg-slate-800 hover:bg-slate-600 transition-all ease duration-300">Logout</NavLink>
                         </div>
                     </div>
                 </div>
