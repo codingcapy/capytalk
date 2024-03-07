@@ -31,9 +31,9 @@ export default function Messages(props) {
     };
 
     return (
-        <div className="px-5 border-2 border-slate-600 bg-slate-800 w-80 md:w-[900px] h-[75vh] md:h-screen overflow-y-auto hover:bg-slate-600 transition-all ease duration-300">
+        <div className="px-5 border-2 border-slate-600 bg-slate-800 w-80 md:w-[900px] h-[75vh] md:h-screen overflow-y-auto">
             <div className="text-xl sticky top-0 bg-slate-800 py-5">{props.currentChat.title}</div>
-            <div className="sticky top-16 bg-slate-800 py-5">+ Invite friend</div>
+            <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             <div className="overflow-hidden">
                 {props.currentMessages.map((message) =>
                     props.currentUser === message.username
@@ -44,8 +44,8 @@ export default function Messages(props) {
                                     <div className="overflow-wrap break-word">{message.content}</div>
                                 </div>
                                 <div className="flex edit-delete opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div className="edit-btn cursor-pointer">Edit</div>
-                                    <div className="delete-btn cursor-pointer px-2">Delete</div>
+                                    <div className="edit-btn cursor-pointer hover:bg-slate-700 transition-all ease duration-300">Edit</div>
+                                    <div className="delete-btn cursor-pointer px-2 hover:bg-red-700 transition-all ease duration-300">Delete</div>
                                 </div>
                             </div>
                         </div>
