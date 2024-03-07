@@ -31,15 +31,28 @@ export default function Messages(props) {
     };
 
     return (
-        <div className="px-5 border-2 border-slate-600 bg-slate-800 w-80 md:w-[900px] h-[75vh] md:h-screen overflow-y-auto">
+        <div className="px-5 border-2 border-slate-600 bg-slate-800 w-80 md:w-[900px] h-[75vh] md:h-screen overflow-y-auto hover:bg-slate-600 transition-all ease duration-300">
             <div className="text-xl sticky top-0 bg-slate-800 py-5">{props.currentChat.title}</div>
             <div className="sticky top-16 bg-slate-800 py-5">+ Invite friend</div>
             <div className="overflow-hidden">
                 {props.currentMessages.map((message) =>
-                    <div key={message.messageId} className="py-2">
-                        <div className="flex"><div className="font-bold">{message.username}</div><div className="pl-2">on {message.date}</div></div>
-                        <div className="overflow-wrap break-word">{message.content}</div>
-                    </div>)}
+                    props.currentUser === message.username
+                        ? <div key={message.messageId} className="py-2 message-container group hover:bg-slate-600 transition-all ease duration-300">
+                            <div className="flex justify-between">
+                                <div>
+                                    <div className="flex"><div className="font-bold">{message.username}</div><div className="pl-2">on {message.date}</div></div>
+                                    <div className="overflow-wrap break-word">{message.content}</div>
+                                </div>
+                                <div className="flex edit-delete opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div className="edit-btn cursor-pointer">Edit</div>
+                                    <div className="delete-btn cursor-pointer px-2">Delete</div>
+                                </div>
+                            </div>
+                        </div>
+                        : <div key={message.messageId} className="py-2 hover:bg-slate-600 transition-all ease duration-300">
+                            <div className="flex"><div className="font-bold">{message.username}</div><div className="pl-2">on {message.date}</div></div>
+                            <div className="overflow-wrap break-word">{message.content}</div>
+                        </div>)}
                 <div ref={messagesEndRef} />
             </div>
             <div className={`py-2 md:py-10 bg-slate-800 sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"}`}>
