@@ -45,10 +45,10 @@ export default function Messages(props) {
                                 <div>
                                     <div className="overflow-wrap break-word">{message.content}</div>
                                 </div>
-                                <div className="flex edit-delete opacity-0 group-hover:opacity-100 transition-opacity">
+                                {ownMessage && <div className="flex edit-delete opacity-0 group-hover:opacity-100 transition-opacity">
                                     <div className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</div>
                                     <div className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl">Delete</div>
-                                </div>
+                                </div>}
                             </div>
                         </div>
                         : <div key={message.messageId} className="py-2 hover:bg-slate-600 transition-all ease duration-300">
