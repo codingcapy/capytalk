@@ -11,6 +11,7 @@ import { useState, useEffect, useRef } from "react";
 export default function Messages(props) {
 
     const [isMenuSticky, setIsMenuSticky] = useState(false);
+    const [ownMessage, setOwnMessage] = useState(false);
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
@@ -37,15 +38,16 @@ export default function Messages(props) {
             <div className="overflow-hidden">
                 {props.currentMessages.map((message) =>
                     props.currentUser === message.username
-                        ? <div key={message.messageId} className="py-2 message-container group hover:bg-slate-600 transition-all ease duration-300">
+                        ? <div key={message.messageId} onMouseEnter={() => setOwnMessage(true)}
+                        onMouseLeave={() => setOwnMessage(false)} className="py-2 message-container group hover:bg-slate-600 transition-all ease duration-300">
                             <div className="flex"><div className="font-bold px-1">{message.username}</div><div className="pl-2">on {message.date}</div></div>
                             <div className="md:flex justify-between px-1">
                                 <div>
                                     <div className="overflow-wrap break-word">{message.content}</div>
                                 </div>
                                 <div className="flex edit-delete opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div className="edit-btn cursor-pointer px-1 md:px-2 md:mr-1 py-1 md:py-2 bg-slate-800 rounded-xl">Edit</div>
-                                    <div className="delete-btn cursor-pointer px-1 md:px-2 md:mx-1 py-1 md:py-2 bg-red-600 rounded-xl">Delete</div>
+                                    <div className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</div>
+                                    <div className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl">Delete</div>
                                 </div>
                             </div>
                         </div>
