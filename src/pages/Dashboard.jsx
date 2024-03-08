@@ -235,8 +235,8 @@ export default function Dashboard() {
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                         {showProfile && <Profile />}
                         <div className="flex flex-col">
-                            <div onClick={clickedProfile} className="px-5 py-5 bg-slate-800 font-bold cursor-pointer">{user.username}</div>
-                            <NavLink to="/capytalk/" onClick={logoutService} className="px-5 bg-slate-800 hover:bg-slate-600 transition-all ease duration-300">Logout</NavLink>
+                            <div onClick={clickedProfile} className="px-5 py-5 rounded-xl hover:bg-slate-600 transition-all ease duration-300 font-bold cursor-pointer">{user.username}</div>
+                            <NavLink to="/capytalk/" onClick={logoutService} className="px-5 py-1 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Logout</NavLink>
                         </div>
                     </div>
                 </div>
@@ -250,7 +250,7 @@ export default function Dashboard() {
                 </div>
             </main>
             <div className={`flex justify-between py-5 md:hidden sticky z-90 bg-slate-800 ${isMenuSticky ? "top-0" : "bottom-0"
-                    }`}>
+                }`}>
                 <div className="px-5" onClick={() => tappedFriends()}>
                     Friends
                 </div>
