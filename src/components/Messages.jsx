@@ -41,17 +41,17 @@ export default function Messages(props) {
                             <div className="flex"><div className="font-bold px-1">{message.username}</div><div className="pl-2">on {message.date}</div></div>
                             <div className="md:flex justify-between px-1">
                                 <div>
-                                    <div className="overflow-wrap break-word pb-1">{message.content}</div>
+                                    <div className="overflow-wrap break-word">{message.content}</div>
                                 </div>
                                 <div className="flex edit-delete opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div className="edit-btn cursor-pointer px-2 mr-1 py-2 bg-slate-800 rounded-xl">Edit</div>
-                                    <div className="delete-btn cursor-pointer px-2 mx-1 py-2 bg-red-600 rounded-xl">Delete</div>
+                                    <div className="edit-btn cursor-pointer px-1 md:px-2 md:mr-1 py-1 md:py-2 bg-slate-800 rounded-xl">Edit</div>
+                                    <div className="delete-btn cursor-pointer px-1 md:px-2 md:mx-1 py-1 md:py-2 bg-red-600 rounded-xl">Delete</div>
                                 </div>
                             </div>
                         </div>
                         : <div key={message.messageId} className="py-2 hover:bg-slate-600 transition-all ease duration-300">
-                            <div className="flex"><div className="font-bold">{message.username}</div><div className="pl-2">on {message.date}</div></div>
-                            <div className="overflow-wrap break-word">{message.content}</div>
+                            <div className="flex"><div className="font-bold px-1">{message.username}</div><div className="pl-2">on {message.date}</div></div>
+                            <div className="overflow-wrap break-word px-1">{message.content}</div>
                         </div>)}
                 <div ref={messagesEndRef} />
             </div>
