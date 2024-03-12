@@ -178,6 +178,26 @@ export default function Dashboard() {
         }
     }
 
+    async function handleEditMessage(e) {
+        e.preventDefault();
+        const content = e.target.content.value;
+        const messageId = e.target.messageid.value;
+        const message = { content };
+        console.log("reach test")
+        const res = await axios.post(`${DOMAIN}/api/messages/update/${messageId}`, message);
+        if (res?.data.success) {
+            const newMessage = await axios.get(`${DOMAIN}/api/messages/${currentChat.chatId}`);
+            setMessage(res?.data.message);
+            setCurrentMessages(newMessage.data);
+            setInputMessage("");
+            socket.emit("message", message);
+        }
+        else {
+            setMessage(res?.data.message);
+            setInputMessage("");
+        }
+    }
+
     useEffect(() => {
         socket.on("message", receiveMessage);
         return () => socket.off("message", receiveMessage);
@@ -230,7 +250,7 @@ export default function Dashboard() {
                         {showDefault && <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full h-screen overflow-y-auto">
                             <div className="text-xl sticky top-0 bg-slate-800 py-5">Messages</div>
                         </div>}
-                        {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} />}
+                        {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} handleEditMessage={handleEditMessage} />}
                         {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} friends={friends} />}
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                         {showProfile && <Profile />}
@@ -243,7 +263,7 @@ export default function Dashboard() {
                 <div className="px-3 md:hidden">
                     {chatsMode && <Chats chats={chats} clickedChat={clickedChat} />}
                     {friendsMode && <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />}
-                    {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} />}
+                    {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} handleEditMessage={handleEditMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} />}
                     {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} />}
                     {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                     {showProfile && <Profile />}
