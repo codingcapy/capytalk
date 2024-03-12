@@ -33,7 +33,10 @@ export default function Messages(props) {
 
     return (
         <div className="px-5 border-2 border-slate-600 bg-slate-800 w-80 md:w-[900px] h-[75vh] md:h-screen overflow-y-auto">
-            <div className="text-xl sticky top-0 bg-slate-800 py-5">{props.currentChat.title}</div>
+            <div className="flex justify-between py-5 sticky top-0 bg-slate-800">
+                <div className="text-xl  ">{props.currentChat.title}</div>
+                <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl">Leave Chat</button>
+            </div>
             <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             <div className="overflow-hidden">
                 {props.currentMessages.map((message) =>

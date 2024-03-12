@@ -15,6 +15,9 @@ export default function FriendProfile(props) {
             <p className="py-5 text-xl">{props.friendName}</p>
             <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white" onClick={props.handleCreateChat}>Start Chat</button>
             {props.message}
+            <br />
+            <button className="rounded-xl my-5 py-2 px-2 bg-red-900 text-white" >Block</button>
+            {props.message}
         </div>
     )
 }
