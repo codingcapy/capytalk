@@ -7,6 +7,11 @@ description: messages component for CapyTalk client
 
 
 import { useState, useEffect, useRef } from "react";
+import io from "socket.io-client";
+import axios from "axios";
+import DOMAIN from "../services/endpoint";
+
+const socket = io("https://capytalk-server-production.up.railway.app");
 
 export default function Message(props) {
 
@@ -14,6 +19,23 @@ export default function Message(props) {
     const [editMode, setEditMode] = useState(false);
     const [messageContent, setMessageContent] = useState(props.message.content);
     const messagesEndRef = useRef(null);
+
+    async function handleEditMessage(e) {
+        e.preventDefault();
+        const content = e.target.content.value;
+        const messageId = e.target.messageid.value;
+        const message = { content };
+        const res = await axios.post(`${DOMAIN}/api/messages/update/${messageId}`, message);
+        if (res?.data.success) {
+            const newMessage = await axios.get(`${DOMAIN}/api/messages/${props.currentChat.chatId}`);
+            props.setCurrentMessages(newMessage.data);
+            setEditMode(false);
+            socket.emit("message", message);
+        }
+        else {
+            setInputMessage("");
+        }
+    }
 
     useEffect(() => {
         function handleScroll() {
@@ -39,7 +61,7 @@ export default function Message(props) {
                 {!editMode && <div>
                     <div className="overflow-wrap break-word pb-1">{props.message.content}</div>
                 </div>}
-                {editMode && <form onSubmit={props.handleEditMessage}>
+                {editMode && <form onSubmit={handleEditMessage}>
                     <input type="text" name="content" id="content" value={messageContent} onChange={(e) => setMessageContent(e.target.value)} className="text-black" />
                     <input name="messageid" id="messageid" defaultValue={`${props.message.messageId}`} className="hidden" />
                     <button className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</button>
@@ -47,7 +69,7 @@ export default function Message(props) {
                 </form>}
                 <div className=" edit-delete hidden group-hover:flex opacity-100 transition-opacity">
                     {!editMode && <div onClick={() => setEditMode(true)} className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</div>}
-                    {!editMode && <form onSubmit={props.handleEditMessage}>
+                    {!editMode && <form onSubmit={handleEditMessage}>
                         <input name="content" id="content" defaultValue="[this message was deleted]" className="hidden" />
                         <input name="messageid" id="messageid" defaultValue={`${props.message.messageId}`} className="hidden" />
                         <button type="submit" className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl">Delete</button>
