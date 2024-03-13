@@ -34,7 +34,7 @@ export default function Dashboard() {
     const [isMenuSticky, setIsMenuSticky] = useState(false);
     const [friend, setFriend] = useState("");
     const [friends, setFriends] = useState(user.friends);
-    const [chats, setChats] = useState(user.chats);
+    const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [currentMessages, setCurrentMessages] = useState([]);
     const [inputChat, setInputChat] = useState("");
@@ -145,12 +145,12 @@ export default function Dashboard() {
         const chat = { title, user: currentUser, friend: currentFriend };
         const res = await axios.post(`${DOMAIN}/api/chats`, chat);
         if (res?.data.success) {
-            const user1 = await axios.get(`${DOMAIN}/api/users/${user.userId}`);
+            const response = await axios.get(`${DOMAIN}/api/chats/user/${user.userId}`)
             setMessage(res?.data.message);
-            setChats(user1.data.chats);
+            setChats(response.data);
             setInputChat("");
             socket.emit("chat", chat);
-            const newChat = user1.data.chats[user1.data.chats.length - 1]
+            const newChat = response.data[response.data.chats.length - 1]
             clickedChat(newChat)
         }
         else {
@@ -194,8 +194,8 @@ export default function Dashboard() {
     }, [chats]);
 
     async function receiveChat() {
-        const newUser = await axios.get(`${DOMAIN}/api/users/${user.userId}`);
-        setChats(newUser.data.chats);
+        const response = await axios.get(`${DOMAIN}/api/chats/user/${user.userId}`)
+        setChats(response.data);
     }
 
     useEffect(() => {
@@ -219,6 +219,14 @@ export default function Dashboard() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    useEffect(() => {
+        async function getChats() {
+            const res = await axios.get(`${DOMAIN}/api/chats/user/${user.userId}`)
+            setChats(res.data)
+        }
+        getChats()
+    }, [user.userId])
 
     return (
         <div className="flex flex-col fixed min-h-full min-w-full mx-auto bg-slate-800 text-white">
