@@ -41,7 +41,7 @@ export default function Messages(props) {
             <div className="overflow-hidden">
                 {props.currentMessages.map((message) =>
                     props.currentUser === message.username
-                        ? <Message key={message.messageId} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages}/>
+                        ? <Message key={message.messageId} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} />
                         : <div key={message.messageId} className="py-2 hover:bg-slate-600 transition-all ease duration-300">
                             <div className="flex"><div className="font-bold px-1">{message.username}</div><div className="pl-2">on {message.date}</div></div>
                             <div className="overflow-wrap break-word px-1">{message.content}</div>

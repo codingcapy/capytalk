@@ -1,8 +1,9 @@
+
 /*
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: messages component for CapyTalk client
+description: message component for CapyTalk client
  */
 
 
@@ -65,7 +66,7 @@ export default function Message(props) {
                     <input type="text" name="content" id="content" value={messageContent} onChange={(e) => setMessageContent(e.target.value)} className="text-black" />
                     <input name="messageid" id="messageid" defaultValue={`${props.message.messageId}`} className="hidden" />
                     <button className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</button>
-                    <button  className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl"onClick={() => setEditMode(false)}>Cancel</button>
+                    <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setEditMode(false)}>Cancel</button>
                 </form>}
                 <div className=" edit-delete hidden group-hover:flex opacity-100 transition-opacity">
                     {!editMode && <div onClick={() => setEditMode(true)} className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</div>}

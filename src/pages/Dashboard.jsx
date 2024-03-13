@@ -24,7 +24,6 @@ const socket = io("https://capytalk-server-production.up.railway.app");
 export default function Dashboard() {
 
     const data = useLoaderData()
-    console.log(data)
     const initFriends = []
     data.forEach((friend) => { initFriends.push(friend.username) })
     const { logoutService, user } = useAuthStore((state) => state);

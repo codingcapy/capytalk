@@ -28,8 +28,7 @@ export default function AddFriend(props) {
             setMessage(res?.data.message);
             const friends = await axios.get(`${DOMAIN}/api/user/friends/${props.user.userId}`)
             const newFriends = []
-            friends.data.forEach((friend)=>newFriends.push(friend.username))
-            console.log(newFriends)
+            friends.data.forEach((friend) => newFriends.push(friend.username))
             props.setFriends(newFriends)
             setinputFriend("");
             socket.emit("friend", data.friend);

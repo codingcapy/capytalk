@@ -20,7 +20,7 @@ export function Router() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route element={<Layout />}>
-                <Route path="/capytalk/" element={<HomePage />}  />
+                <Route path="/capytalk/" element={<HomePage />} />
                 <Route path="/capytalk/users/login" element={<LoginPage />} />
                 <Route path="/capytalk/users/signup" element={<SignupPage />} />
                 <Route path="/capytalk/dashboard/:userId" element={<Dashboard />} loader={dataLoader} />

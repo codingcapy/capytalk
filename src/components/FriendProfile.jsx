@@ -6,8 +6,6 @@ version: 1.0
 description: friend profile component for CapyTalk client
  */
 
-import { useState } from "react";
-
 export default function FriendProfile(props) {
 
     return (

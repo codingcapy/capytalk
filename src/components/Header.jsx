@@ -8,7 +8,7 @@ description: header component for CapyTalk client
 
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import {IoHomeSharp} from "react-icons/io5"
+import { IoHomeSharp } from "react-icons/io5"
 
 export default function Header() {
 
