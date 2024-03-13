@@ -6,7 +6,7 @@ version: 1.0
 description: dashboard for CapyTalk client
  */
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
 import axios from "axios";
@@ -23,6 +23,10 @@ const socket = io("https://capytalk-server-production.up.railway.app");
 
 export default function Dashboard() {
 
+    const data = useLoaderData()
+    console.log(data)
+    const initFriends = []
+    data.forEach((friend) => { initFriends.push(friend.username) })
     const { logoutService, user } = useAuthStore((state) => state);
     const [chatsMode, setChatsMode] = useState(true);
     const [friendsMode, setFriendsMode] = useState(false);
@@ -33,12 +37,22 @@ export default function Dashboard() {
     const [showProfile, setShowProfile] = useState(false);
     const [isMenuSticky, setIsMenuSticky] = useState(false);
     const [friend, setFriend] = useState("");
-    const [friends, setFriends] = useState(user.friends);
+    const [friends, setFriends] = useState([]);
     const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [currentMessages, setCurrentMessages] = useState([]);
     const [inputChat, setInputChat] = useState("");
     const [inputMessage, setInputMessage] = useState("");
+
+    useEffect(() => {
+        async function getFriends() {
+            const friends = await axios.get(`${DOMAIN}/api/user/friends/${user.userId}`)
+            const newFriends = []
+            friends.data.forEach((friend) => { newFriends.push(friend.username) })
+            setFriends(newFriends)
+        }
+        getFriends()
+    }, [user.userId])
 
     function tappedChats() {
         setChatsMode(true);
@@ -204,8 +218,10 @@ export default function Dashboard() {
     }, [friends]);
 
     async function receiveFriend() {
-        const newUser = await axios.get(`${DOMAIN}/api/users/${user.userId}`);
-        setFriends(newUser.data.friends);
+        const friends = await axios.get(`${DOMAIN}/api/user/friends/${user.userId}`)
+        const newFriends = []
+        friends.data.forEach((friend) => newFriends.push(friend.username))
+        setFriends(newFriends)
     }
 
     useEffect(() => {
@@ -270,4 +286,9 @@ export default function Dashboard() {
             </div>
         </div>
     )
+}
+
+export async function dataLoader({ params }) {
+    const res = await axios.get(`${DOMAIN}/api/user/friends/${params.userId}`)
+    return res.data
 }
