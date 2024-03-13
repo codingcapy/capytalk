@@ -280,7 +280,7 @@ export default function Dashboard() {
                     {showProfile && <Profile />}
                 </div>
             </main>
-            <div className={`flex justify-between py-5 md:hidden sticky z-90 bg-slate-800 ${isMenuSticky ? "top-0" : "bottom-0"
+            <div className={`flex justify-between py-5 px-5 md:hidden sticky z-90 bg-slate-800 ${isMenuSticky ? "top-0" : "bottom-0"
                 }`}>
                 <div className="" onClick={() => tappedFriends()}>
                     <FaUserFriends size={25} className="text-center mx-2" />
