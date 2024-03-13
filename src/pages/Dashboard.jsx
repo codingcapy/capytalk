@@ -19,7 +19,7 @@ import AddFriend from "../components/AddFriend";
 import FriendProfile from "../components/FriendProfile";
 import Profile from "../components/Profile";
 import { CgProfile } from "react-icons/cg";
-import { IoExitOutline } from "react-icons/io5";
+import { IoExitOutline, IoChatbubbleOutline } from "react-icons/io5";
 
 const socket = io("https://capytalk-server-production.up.railway.app");
 
@@ -258,7 +258,7 @@ export default function Dashboard() {
                         <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />
                         <Chats clickedChat={clickedChat} chats={chats} />
                         {showDefault && <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full h-screen overflow-y-auto">
-                            <div className="text-xl sticky top-0 bg-slate-800 py-5">Messages</div>
+                            <div className="flex text-xl sticky top-0 bg-slate-800 py-5"><IoChatbubbleOutline size={25} className="mx-2" />Messages</div>
                         </div>}
                         {showMessages && <Messages currentChat={currentChat} currentUser={user.username} user={user} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} />}
                         {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} friends={friends} />}
