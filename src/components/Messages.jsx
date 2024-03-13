@@ -8,6 +8,11 @@ description: messages component for CapyTalk client
 
 import { useState, useEffect, useRef } from "react";
 import Message from "./Message";
+import axios from "axios";
+import DOMAIN from "../services/endpoint";
+import io from "socket.io-client";
+
+const socket = io("http://localhost:3333");
 
 export default function Messages(props) {
 
@@ -31,11 +36,27 @@ export default function Messages(props) {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
+    async function handleLeaveChat() {
+        const content = `${props.currentUser} left the chat`;
+        const currentUser = "notification";
+        const message = { content, user: currentUser, chatId: props.currentChat.chatId };
+        await axios.post(`${DOMAIN}/api/messages`, message);
+        socket.emit("message", message);
+        const userId = props.user.userId;
+        const chatId = props.currentChat.chatId;
+        const res = await axios.post(`${DOMAIN}/api/chats/chat/${props.currentChat.chatId}`, { userId, chatId })
+        if (res.data.success) {
+            props.clickedLeaveChat();
+            const response = await axios.get(`${DOMAIN}/api/chats/user/${props.user.userId}`)
+            props.setChats(response.data);
+        }
+    }
+
     return (
         <div className="px-5 border-2 border-slate-600 bg-slate-800 w-80 md:w-[900px] h-[75vh] md:h-screen overflow-y-auto">
             <div className="flex justify-between py-5 sticky top-0 bg-slate-800">
                 <div className="text-xl  ">{props.currentChat.title}</div>
-                <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl">Leave Chat</button>
+                <button onClick={handleLeaveChat} className="delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl">Leave Chat</button>
             </div>
             <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             <div className="overflow-hidden">

@@ -148,6 +148,11 @@ export default function Dashboard() {
         tappedProfile();
     }
 
+    function clickedLeaveChat() {
+        setShowDefault(true);
+        tappedChats();
+    }
+
     const [message, setMessage] = useState("");
 
     async function handleCreateChat(e) {
@@ -253,7 +258,7 @@ export default function Dashboard() {
                         {showDefault && <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full h-screen overflow-y-auto">
                             <div className="text-xl sticky top-0 bg-slate-800 py-5">Messages</div>
                         </div>}
-                        {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} />}
+                        {showMessages && <Messages currentChat={currentChat} currentUser={user.username} user={user} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} />}
                         {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} friends={friends} />}
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                         {showProfile && <Profile />}
