@@ -12,6 +12,7 @@ import axios from "axios";
 import DOMAIN from "../services/endpoint";
 import io from "socket.io-client";
 import { IoExitOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { LuSendHorizonal } from "react-icons/lu";
 
 const socket = io("https://capytalk-server-production.up.railway.app");
 
@@ -74,7 +75,7 @@ export default function Messages(props) {
                 <form onSubmit={props.handleCreateMessage}>
                     <div className="flex">
                         <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="py-2 px-2 my-2 rounded-xl md:w-[800px] text-black" />
-                        <button type="submit" className="mx-1 px-1 md:mx-2 md:px-5 rounded-xl bg-yellow-600 text-white">Send</button>
+                        <button type="submit" className="mx-1 px-4 md:mx-2 md:px-5 rounded-3xl bg-yellow-600 text-white"><LuSendHorizonal size={25}/></button>
                     </div>
                 </form>
             </div>
