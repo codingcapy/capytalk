@@ -150,7 +150,7 @@ export default function Dashboard() {
             setChats(response.data);
             setInputChat("");
             socket.emit("chat", chat);
-            const newChat = response.data[response.data.chats.length - 1]
+            const newChat = response.data[response.data.length - 1]
             clickedChat(newChat)
         }
         else {

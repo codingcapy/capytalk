@@ -17,7 +17,6 @@ export default function FriendProfile(props) {
             {props.message}
             <br />
             <button className="rounded-xl my-5 py-2 px-2 bg-red-900 text-white" >Block</button>
-            {props.message}
         </div>
     )
 }
