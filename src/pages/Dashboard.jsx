@@ -18,6 +18,8 @@ import Messages from "../components/Messages";
 import AddFriend from "../components/AddFriend";
 import FriendProfile from "../components/FriendProfile";
 import Profile from "../components/Profile";
+import { CgProfile } from "react-icons/cg";
+import { IoExitOutline } from "react-icons/io5";
 
 const socket = io("https://capytalk-server-production.up.railway.app");
 
@@ -263,8 +265,8 @@ export default function Dashboard() {
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                         {showProfile && <Profile />}
                         <div className="flex flex-col">
-                            <div onClick={clickedProfile} className="px-5 py-5 rounded-xl hover:bg-slate-600 transition-all ease duration-300 font-bold cursor-pointer">{user.username}</div>
-                            <NavLink to="/capytalk/" onClick={logoutService} className="px-5 py-1 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Logout</NavLink>
+                            <div onClick={clickedProfile} className="flex px-2 py-5 rounded-xl hover:bg-slate-600 transition-all ease duration-300 font-bold cursor-pointer"><CgProfile size={25} className="text-center mx-2" />{user.username}</div>
+                            <NavLink to="/capytalk/" onClick={logoutService} className="flex px-5 py-1 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Logout<IoExitOutline size={25} className="text-center mx-2" /></NavLink>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,7 @@ import DOMAIN from "../services/endpoint"
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { CgProfile } from "react-icons/cg";
 
 export default function Profile() {
     const { user } = useAuthStore((state) => state)
@@ -37,7 +38,7 @@ export default function Profile() {
 
     return (
         <div className="px-5 border-2 border-slate-600 md:w-[900px] h-[85vh] md:h-screen overflow-y-auto">
-            <h1 className="text-3xl font-bold text-center py-5 ">Your Profile</h1>
+            <h1 className="flex text-3xl font-bold text-center py-5 "><CgProfile size={35} className="text-center mx-2" />Your Profile</h1>
             <p>Username: {user.username}</p>
             {editMode
                 ? <form onSubmit={handleEditPassword} className="flex flex-col">
