@@ -19,7 +19,8 @@ import AddFriend from "../components/AddFriend";
 import FriendProfile from "../components/FriendProfile";
 import Profile from "../components/Profile";
 import { CgProfile } from "react-icons/cg";
-import { IoExitOutline, IoChatbubbleOutline } from "react-icons/io5";
+import { IoExitOutline, IoChatbubbleOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { FaUserFriends } from "react-icons/fa";
 
 const socket = io("https://capytalk-server-production.up.railway.app");
 
@@ -281,14 +282,21 @@ export default function Dashboard() {
             </main>
             <div className={`flex justify-between py-5 md:hidden sticky z-90 bg-slate-800 ${isMenuSticky ? "top-0" : "bottom-0"
                 }`}>
-                <div className="px-5" onClick={() => tappedFriends()}>
-                    Friends
+                <div className="" onClick={() => tappedFriends()}>
+                    <FaUserFriends size={25} className="text-center mx-2" />
+                    <p className="text-center text-xs">Friends</p>
                 </div>
-                <div className="px-5" onClick={tappedChats}>
-                    Chats
+                <div className="" onClick={tappedChats}>
+                    <IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />
+                    <p className="text-center text-xs">Chats</p>
                 </div>
-                <div onClick={tappedProfile} className="px-5">You</div>
-                <NavLink to="/capytalk/" onClick={logoutService} className="px-5">Logout</NavLink>
+                <div onClick={tappedProfile} className="">
+                    <CgProfile size={25} className="text-center mx-2" />
+                    <p className="text-center text-xs">You</p>
+                </div>
+                <NavLink to="/capytalk/" onClick={logoutService} className="text-xs">
+                    <IoExitOutline size={25} className="text-center mx-2" />Logout
+                </NavLink>
             </div>
         </div>
     )
