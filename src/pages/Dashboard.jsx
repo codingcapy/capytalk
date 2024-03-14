@@ -271,10 +271,10 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="px-3 md:hidden">
+                <div className="px-3 flex flex-col md:hidden">
                     {chatsMode && <Chats chats={chats} clickedChat={clickedChat} />}
                     {friendsMode && <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />}
-                    {showMessages && <div className="flex flex-col"><Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} setCurrentMessages={setCurrentMessages} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} /></div>}
+                    {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} setCurrentMessages={setCurrentMessages} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} />}
                     {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} />}
                     {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
                     {showProfile && <Profile />}
