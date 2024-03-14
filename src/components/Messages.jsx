@@ -52,6 +52,9 @@ export default function Messages(props) {
             const response = await axios.get(`${DOMAIN}/api/chats/user/${props.user.userId}`)
             props.setChats(response.data);
         }
+        else{
+            console.log(res?.data.message)
+        }
     }
 
     return (

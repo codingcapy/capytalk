@@ -156,8 +156,6 @@ export default function Dashboard() {
         tappedChats();
     }
 
-    const [message, setMessage] = useState("");
-
     async function handleCreateChat(e) {
         e.preventDefault();
         const currentUser = user.username;
@@ -167,7 +165,6 @@ export default function Dashboard() {
         const res = await axios.post(`${DOMAIN}/api/chats`, chat);
         if (res?.data.success) {
             const response = await axios.get(`${DOMAIN}/api/chats/user/${user.userId}`)
-            setMessage(res?.data.message);
             setChats(response.data);
             setInputChat("");
             socket.emit("chat", chat);
@@ -175,8 +172,8 @@ export default function Dashboard() {
             clickedChat(newChat)
         }
         else {
-            setMessage(res?.data.message);
             setInputChat("");
+            console.log(res?.data.message)
         }
     }
 
@@ -188,14 +185,13 @@ export default function Dashboard() {
         const res = await axios.post(`${DOMAIN}/api/messages`, message);
         if (res?.data.success) {
             const newMessage = await axios.get(`${DOMAIN}/api/messages/${currentChat.chatId}`);
-            setMessage(res?.data.message);
             setCurrentMessages(newMessage.data);
             setInputMessage("");
             socket.emit("message", message);
         }
         else {
-            setMessage(res?.data.message);
             setInputMessage("");
+            console.log(res?.data.message)
         }
     }
 
@@ -261,9 +257,9 @@ export default function Dashboard() {
                         {showDefault && <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full h-screen overflow-y-auto">
                             <div className="flex text-xl sticky top-0 bg-slate-800 py-5"><IoChatbubbleOutline size={25} className="mx-2" />Messages</div>
                         </div>}
-                        {showMessages && <Messages currentChat={currentChat} currentUser={user.username} user={user} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} />}
+                        {showMessages && <Messages currentChat={currentChat} currentUser={user.username} user={user} handleCreateMessage={handleCreateMessage} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} />}
                         {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} friends={friends} />}
-                        {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
+                        {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} inputChat={inputChat} setInputChat={setInputChat} />}
                         {showProfile && <Profile />}
                         <div className="flex flex-col">
                             <div onClick={clickedProfile} className="flex px-2 py-5 rounded-xl hover:bg-slate-600 transition-all ease duration-300 font-bold cursor-pointer"><CgProfile size={25} className="text-center mx-2" />{user.username}</div>
@@ -274,9 +270,9 @@ export default function Dashboard() {
                 <div className="px-3 flex flex-col md:hidden">
                     {chatsMode && <Chats chats={chats} clickedChat={clickedChat} />}
                     {friendsMode && <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />}
-                    {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} setCurrentMessages={setCurrentMessages} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} />}
+                    {showMessages && <Messages currentChat={currentChat} currentUser={user.username} handleCreateMessage={handleCreateMessage} setCurrentMessages={setCurrentMessages} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} />}
                     {showAddFriend && <AddFriend currentUser={user.username} setFriends={setFriends} user={user} />}
-                    {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
+                    {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} inputChat={inputChat} setInputChat={setInputChat} />}
                     {showProfile && <Profile />}
                 </div>
             </main>

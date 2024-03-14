@@ -35,6 +35,7 @@ export default function Message(props) {
         }
         else {
             setInputMessage("");
+            console.log(res?.data.message)
         }
     }
 

@@ -34,6 +34,9 @@ export default function Profile() {
         if (res?.data.success) {
             navigate(`/capytalk/dashboard/${userId}`);
         }
+        else{
+            console.log(res?.data.message)
+        }
     }
 
     return (
