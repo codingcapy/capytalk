@@ -55,10 +55,10 @@ export default function Messages(props) {
     }
 
     return (
-        <div className="px-5 border-2 border-slate-600 bg-slate-800 w-80 md:w-[900px] h-[75vh] md:h-screen overflow-y-auto">
+        <div className="px-5 border-2 border-slate-600 bg-slate-800 w-96 md:w-[900px] h-[80vh] md:h-screen overflow-y-auto">
             <div className="flex justify-between py-5 sticky top-0 bg-slate-800">
-            <div className="flex text-xl"><IoChatbubbleEllipsesOutline size={25} className="text-center mx-2"/>{props.currentChat.title}</div>
-                <button onClick={handleLeaveChat} className="flex delete-btn cursor-pointer px-2 py-1 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300">Leave Chat<IoExitOutline size={25} className="text-center mx-2" /></button>
+                <div className="flex md:text-xl"><IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />{props.currentChat.title}</div>
+                <button onClick={handleLeaveChat} className="flex delete-btn cursor-pointer px-1 md:px-2 py-1 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300">Leave Chat<IoExitOutline size={25} className="text-center mx-2" /></button>
             </div>
             <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             <div className="overflow-hidden">
@@ -75,7 +75,7 @@ export default function Messages(props) {
                 <form onSubmit={props.handleCreateMessage}>
                     <div className="flex">
                         <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="py-2 px-2 my-2 rounded-xl md:w-[800px] text-black" />
-                        <button type="submit" className="mx-1 px-3 md:mx-2 md:px-5 rounded-3xl bg-yellow-600 text-white"><LuSendHorizonal size={25}/></button>
+                        <button type="submit" className="mx-1 px-3 md:mx-2 md:px-5 rounded-3xl bg-yellow-600 text-white"><LuSendHorizonal size={25} /></button>
                     </div>
                 </form>
             </div>
