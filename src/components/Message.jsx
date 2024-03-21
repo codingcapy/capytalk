@@ -60,7 +60,7 @@ export default function Message(props) {
 
     return (
         <div className="py-2 message-container group hover:bg-slate-600 transition-all ease duration-300">
-            <div className="flex"><div className="font-bold px-1">{props.message.username}</div><div className="pl-2">on {props.message.date}</div></div>
+            <div className="flex"><div className="font-bold px-1">{props.message.username}</div><div className="pl-2">on {props.message.date.slice(0, 10)} {props.message.date.slice(11, 19)}</div></div>
             <div className="md:flex justify-between px-1">
                 {!editMode && <div>
                     <div className="overflow-wrap break-word pb-1">{props.message.content}</div>
