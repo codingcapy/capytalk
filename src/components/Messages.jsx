@@ -61,7 +61,7 @@ export default function Messages(props) {
         <div className="px-5 border-2 border-slate-600 mx-auto bg-slate-800 w-[330px] md:w-[900px] h-[77vh] md:h-screen overflow-y-auto">
             <div className="flex justify-between py-5 sticky top-0 bg-slate-800">
                 <div className="flex md:text-xl"><IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />{props.currentChat.title}</div>
-                <button onClick={handleLeaveChat} className="flex delete-btn cursor-pointer px-1 md:px-2 py-1 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300">Leave Chat<IoExitOutline size={25} className="text-center mx-2" /></button>
+                <button onClick={handleLeaveChat} className="flex delete-btn cursor-pointer px-1 md:px-2 md:py-1 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300">Leave Chat<IoExitOutline size={25} className="text-center mx-2" /></button>
             </div>
             <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             <div className="overflow-hidden">

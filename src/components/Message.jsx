@@ -11,6 +11,8 @@ import { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import DOMAIN from "../services/endpoint";
+import { MdModeEditOutline } from "react-icons/md";
+import { FaTrashCan } from "react-icons/fa6";
 
 const socket = io("https://capytalk-server-production.up.railway.app");
 
@@ -70,11 +72,11 @@ export default function Message(props) {
                     <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setEditMode(false)}>Cancel</button>
                 </form>}
                 <div className=" edit-delete hidden group-hover:flex opacity-100 transition-opacity">
-                    {!editMode && <div onClick={() => setEditMode(true)} className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</div>}
+                    {!editMode && <div onClick={() => setEditMode(true)} className="flex edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl hover:bg-slate-700 transition-all ease duration-300">Edit <MdModeEditOutline size={20} className="ml-2" /></div>}
                     {!editMode && <form onSubmit={handleEditMessage}>
                         <input name="content" id="content" defaultValue="[this message was deleted]" className="hidden" />
                         <input name="messageid" id="messageid" defaultValue={`${props.message.messageId}`} className="hidden" />
-                        <button type="submit" className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl">Delete</button>
+                        <button type="submit" className="flex delete-btn cursor-pointer px-2 mx-1 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">Delete <FaTrashCan size={20} className="ml-2 pt-1" /></button>
                     </form>}
                 </div>
             </div>
