@@ -14,6 +14,8 @@ import SignupPage from "./pages/SignupPage";
 import Dashboard, { dataLoader } from "./pages/Dashboard";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage"
+import ForgotUsernamePage from "./pages/ForgotUsernamePage"
 
 export function Router() {
 
@@ -26,6 +28,8 @@ export function Router() {
                 <Route path="/capytalk/dashboard/:userId" element={<Dashboard />} loader={dataLoader} />
                 <Route path="/capytalk/about" element={<AboutPage />} />
                 <Route path="/capytalk/contact" element={<ContactPage />} />
+                <Route path="/capytalk/forgotpassword" element={<ForgotPasswordPage />} />
+                <Route path="/capytalk/forgotusername" element={<ForgotUsernamePage />} />
             </Route>
         )
     )

@@ -49,9 +49,12 @@ export default function LoginPage() {
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="Password" required className="px-2 border rounded-lg border-slate-700 py-1" />
                     </div>
-                    <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white">Login</button>
+                    <button className="rounded-xl my-5 py-2 px-2 bg-indigo-600 text-white">Login</button>
                     <NavLink to="/capytalk/users/signup" className="text-center">Sign Up</NavLink>
                 </form>
+                <div>New User? <NavLink to="/capytalk/users/signup" className="text-center text-indigo-600">Sign Up</NavLink></div>
+                    <div>Forgot Password? <NavLink to="/capytalk/forgotpassword" className="text-center text-indigo-600">Reset</NavLink></div>
+                    <div>Forgot Username? <NavLink to="/capytalk/forgotusername" className="text-center text-indigo-600">Recover</NavLink></div>
                 {authLoading ? <h2>Loading...</h2> : null}
                 <p>{message}</p>
             </main>

@@ -52,9 +52,9 @@ export default function SignupPage() {
                         <label htmlFor="password">Email (for password recovery and notifications)</label>
                         <input type="email" name="email" id="email" placeholder="example@example.com" required className="px-2 border rounded-lg border-slate-700 py-1" />
                     </div>
-                    <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white">Sign Up</button>
-                    <NavLink to="/capytalk/users/login" className="text-center">Login</NavLink>
+                    <button className="rounded-xl my-5 py-2 px-2 bg-indigo-600 text-white">Sign Up</button>
                 </form>
+                    <NavLink to="/capytalk/users/login" className="text-center text-indigo-600">Login</NavLink>
                 <p>{message}</p>
             </main>
             <Footer />
