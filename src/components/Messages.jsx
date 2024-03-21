@@ -13,6 +13,7 @@ import DOMAIN from "../services/endpoint";
 import io from "socket.io-client";
 import { IoExitOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { LuSendHorizonal } from "react-icons/lu";
+import MessageFriend from "./MessageFriend";
 
 const socket = io("https://capytalk-server-production.up.railway.app");
 
@@ -68,10 +69,7 @@ export default function Messages(props) {
                 {props.currentMessages.map((message) =>
                     props.currentUser === message.username
                         ? <Message key={message.messageId} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} />
-                        : <div key={message.messageId} className="py-2 hover:bg-slate-600 transition-all ease duration-300">
-                            <div className="flex"><div className="font-bold px-1">{message.username}</div><div className="pl-2">on {message.date.slice(0, 10)} {message.date.slice(11, 19)}</div></div>
-                            <div className="overflow-wrap break-word px-1">{message.content}</div>
-                        </div>)}
+                        : <MessageFriend key={message.messageId} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} user={props.user}/>)}
                 <div ref={messagesEndRef} />
             </div>
             <div className={`py-2 md:py-10 bg-slate-800 sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"}`}>
