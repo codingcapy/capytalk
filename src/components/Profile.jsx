@@ -12,6 +12,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { CgProfile } from "react-icons/cg";
+import profilePic from "/capypaul01.jpg";
 
 export default function Profile() {
     const { user } = useAuthStore((state) => state)
@@ -34,7 +35,7 @@ export default function Profile() {
         if (res?.data.success) {
             navigate(`/capytalk/dashboard/${userId}`);
         }
-        else{
+        else {
             console.log(res?.data.message)
         }
     }
@@ -42,6 +43,7 @@ export default function Profile() {
     return (
         <div className="px-5 border-2 border-slate-600 md:w-[900px] h-[85vh] md:h-screen overflow-y-auto">
             <h1 className="flex text-3xl font-bold text-center py-5 "><CgProfile size={35} className="text-center mx-2" />Your Profile</h1>
+            <img src={profilePic} className="max-w-30 md:max-w-xs rounded-full mx-auto pb-2" />
             <p>Username: {user.username}</p>
             {editMode
                 ? <form onSubmit={handleEditPassword} className="flex flex-col">
