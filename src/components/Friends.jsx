@@ -16,7 +16,7 @@ export default function Friends(props) {
             <div className="flex py-5 px-1 text-xl sticky top-0 bg-slate-800"><FaUserFriends size={25} className="text-center mx-2" />Friends</div>
             <div>
                 <div className="py-5 px-1 cursor-pointer hover:bg-slate-600 transition-all ease duration-300" onClick={() => props.clickedAddFriend()} >+ Add a Friend</div>
-                {props.friends.map((friend) => <div key={friend} onClick={() => props.clickedFriend(friend)} className="py-2 px-1 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">
+                {props.friends.map((friend) => <div key={friend} onClick={() => props.clickedFriend(friend)} className="flex py-2 px-1 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">
                     <img src={profilePic} className="w-[40px]  rounded-full mr-2" />
                     {friend}
                 </div>)}
